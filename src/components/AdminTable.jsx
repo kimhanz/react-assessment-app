@@ -4,7 +4,7 @@ import { useState } from "react"
 // const API_POST = "https://jsd5-mock-backend.onrender.com/members";
 // const API_DELETE = "https://jsd5-mock-backend.onrender.com/member";
 
-const API = "http://localhost:3001/members"
+const API = "http://localhost:3000/members"
 
 export function AdminTable({ users, setUsers, fetchUsers, API }) {
   const [form, setForm] = useState({
@@ -45,13 +45,15 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
   }
 
   const handleDelete = async (id) => {
+    console.log(id)
     if (!window.confirm("Delete this user?")) return
     await axios.delete(`${API}/${id}`)
-    setUsers(users.filter((user) => user.id !== id))
+    setUsers(users.filter((user) => user._id !== id))
   }
 
   const handleEdit = (user) => {
-    setEditId(user.id)
+    console.log(user)
+    setEditId(user._id)
     setEditForm({
       name: user.name,
       lastname: user.lastname,
@@ -115,8 +117,8 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id} className="bg-white">
-              {editId === user.id ? (
+            <tr key={user._id} className="bg-white">
+              {editId === user._id ? (
                 <>
                   <td className="border p-2 ">
                     <input
@@ -147,7 +149,7 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
                   </td>
                   <td className="border p-2 ">
                     <button
-                      onClick={() => handleEditSave(user.id)}
+                      onClick={() => handleEditSave(user._id)}
                       className="cursor-pointer bg-teal-400 hover:bg-teal-500 text-white px-2 rounded-xl mx-0.5"
                     >
                       Save
@@ -173,7 +175,7 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
                       Edit
                     </button>
                     <button
-                      onClick={() => handleDelete(user.id)}
+                      onClick={() => handleDelete(user._id)}
                       className="cursor-pointer bg-rose-400 hover:bg-rose-500 text-white px-2 rounded-xl mx-0.5"
                     >
                       Delete

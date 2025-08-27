@@ -7,7 +7,7 @@ import axios from "axios"
 
 // const API = "https://67eca027aa794fb3222e43e2.mockapi.io/members";
 
-const API = "http://localhost:3001/members"
+const API = "http://localhost:3000/members"
 
 export default function Home() {
   const [view, setView] = useState(null)
@@ -16,7 +16,7 @@ export default function Home() {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(API)
-      setUsers(res.data)
+      setUsers(res.data.members)
     } catch {
       alert("Failed to fetch users")
     }
@@ -32,16 +32,16 @@ export default function Home() {
         <h1>Generation Thailand</h1>
         <h1>React Assessment</h1>
       </section>
-      <section className="flex justify-center gap-x-3 font-bold">
+      <section className="flex justify-center gap-x-20 font-bold">
         <button
           onClick={() => setView("user")}
-          className=" p-5 bg-sky-200 flex rounded-2xl cursor-pointer border hover:bg-sky-300"
+          className=" p-5 bg-white flex rounded-2xl cursor-pointer border hover:text-yellow-500"
         >
           User Section
         </button>
         <button
           onClick={() => setView("admin")}
-          className=" p-5 bg-rose-100 flex rounded-2xl cursor-pointer border hover:bg-rose-200"
+          className=" p-5 bg-white flex rounded-2xl cursor-pointer border hover:text-yellow-500"
         >
           Admin Section
         </button>

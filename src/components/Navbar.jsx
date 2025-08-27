@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 export function Navbar() {
   return (
     <nav>
-      <ul className="flex justify-end px-10 items-center w-full bg-teal-500 h-14 border-b-2 border-black gap-x-6 text-2xl text-white ">
+      <ul className="flex justify-end px-10 items-center w-full bg-[#e7e8e7] h-14 border-b-2 border-black gap-x-6 text-2xl text-black ">
         <li>
           <Link to="/" className="hover:text-yellow-500">
             Home
@@ -16,5 +16,5 @@ export function Navbar() {
         </li>
       </ul>
     </nav>
-  );
+  )
 }
